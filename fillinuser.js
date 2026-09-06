@@ -71,7 +71,7 @@ if (userData) {
 
 
 
-const SITE_URL = "https://hasheins.com";
+const SITE_URL = "https://xaviantrades.github.io/Heist-app/";
 
 function formatDate(timestamp) {
     if (!timestamp) return "N/A";
