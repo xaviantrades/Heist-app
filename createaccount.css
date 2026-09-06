@@ -1,0 +1,412 @@
+/* =========================================================
+   1. Design tokens
+   ========================================================= */
+:root {
+  --ink: #17221e;
+  --muted: #78817d;
+  --green: #0a9b5b;
+  --green2: #0b7448;
+  --mint: #dff5ea;
+  --cream: #f6f7ef;
+  --gold: #f1bd38;
+  --line: #cce5d9;
+  --white: #fff;
+  --shadow: 0 18px 50px rgba(20, 62, 45, .10);
+  --shadow-hover: 0 20px 60px rgba(20, 62, 45, .15);
+  --radius-lg: 28px;
+}
+
+/* =========================================================
+   2. Reset & base
+   ========================================================= */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 { line-height: 1.03; }
+
+/* =========================================================
+   3. Buttons (shared)
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+}
+.btn.full { width: 100%; }
+.btn.small { min-height: 36px; padding: 0 16px; font-size: 12px; }
+
+/* =========================================================
+   4. Top navigation bar
+   ========================================================= */
+.topbar {
+  height: 76px;
+  background: rgba(255, 255, 255, .9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 0 max(22px, calc((100% - 1180px) / 2));
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font: 700 20px "Space Grotesk", sans-serif;
+  text-decoration: none;
+  letter-spacing: 1.8px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--green);
+  color: #fff;
+}
+
+.topbar-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+
+.menu {
+  display: none;
+  border: 0;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.telegram-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #0088cc;
+  color: #fff;
+  transition: transform .2s, background .2s;
+}
+.telegram-link:hover { transform: scale(1.1); background: #0077b3; }
+.telegram-link svg { width: 20px; height: 20px; }
+
+/* =========================================================
+   5. Page shell
+   ========================================================= */
+.page {
+  max-width: 1180px;
+  margin: auto;
+  padding: 28px 22px 100px;
+  flex: 1;
+}
+
+/* =========================================================
+   6. Signup card
+   ========================================================= */
+.signup-container {
+  max-width: 540px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 45px 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.signup-container .eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  color: var(--green2);
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+}
+
+.signup-container h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 36px;
+  text-align: center;
+  margin: 8px 0 4px 0;
+  letter-spacing: -2px;
+}
+
+.signup-container .subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 28px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.signup-container .subtitle strong { color: var(--green); }
+
+.signup-container form { display: grid; gap: 14px; }
+
+.signup-container label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+  display: block;
+}
+.signup-container label .required { color: #e74c3c; margin-left: 2px; }
+.signup-container label .optional { color: var(--muted); font-weight: 400; }
+
+.signup-container .input,
+.signup-container input[type="text"],
+.signup-container input[type="password"] {
+  width: 100%;
+  height: 50px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 0 16px;
+  font: inherit;
+  background: #fbfdfb;
+  transition: border-color .3s, box-shadow .3s;
+  font-size: 15px;
+}
+.signup-container input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(10, 155, 91, .15);
+}
+
+.signup-container .help-text {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: -4px;
+  display: block;
+}
+
+.signup-container .field-wrapper { display: flex; flex-direction: column; gap: 4px; }
+.signup-container .field-wrapper .input-icon { position: relative; }
+.signup-container .field-wrapper .input-icon input { padding-left: 44px; }
+.signup-container .field-wrapper .input-icon .icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.signup-container .btn {
+  min-height: 52px;
+  font-size: 16px;
+  border-radius: 14px;
+  margin-top: 8px;
+}
+.signup-container .btn.primary {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(10, 155, 91, .25);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all .3s;
+}
+.signup-container .btn.primary:hover {
+  background: var(--green2);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(10, 155, 91, .3);
+}
+.signup-container .btn.primary:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+.signup-container .login-link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--muted); }
+.signup-container .login-link a { color: var(--green); font-weight: 700; text-decoration: none; }
+.signup-container .login-link a:hover { text-decoration: underline; }
+
+.signup-container .divider { display: flex; align-items: center; gap: 16px; margin: 6px 0 2px 0; }
+.signup-container .divider::before,
+.signup-container .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.signup-container .divider span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Terms & conditions row */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 4px 0 8px 0;
+}
+.terms-row input[type="checkbox"] {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.terms-row label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1.5;
+}
+.terms-row a { color: var(--green); text-decoration: none; font-weight: 600; }
+
+/* Password strength meter */
+.password-strength {
+  height: 4px;
+  border-radius: 4px;
+  margin-top: 6px;
+  background: #e8ecea;
+  overflow: hidden;
+  transition: all .3s;
+}
+.password-strength .bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .3s, background .3s;
+  width: 0%;
+}
+.password-hint { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* =========================================================
+   7. Mobile bottom nav
+   ========================================================= */
+.mobile-nav {
+  display: none;
+  height: 72px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, .96);
+  border-top: 1px solid var(--line);
+  z-index: 30;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+.mobile-nav a {
+  color: #8a938f;
+  text-decoration: none;
+  font-size: 11px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: color .2s;
+}
+.mobile-nav a:hover { color: var(--green); }
+.mobile-nav span { display: block; font-size: 21px; margin-bottom: 2px; }
+
+/* =========================================================
+   8. Floating Telegram button
+   ========================================================= */
+.telegram-float {
+  position: fixed;
+  right: 20px;
+  bottom: 96px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #0088cc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 136, 204, .35);
+  z-index: 25;
+  transition: transform .2s, background .2s;
+}
+.telegram-float:hover { transform: scale(1.08); background: #0077b3; }
+
+/* =========================================================
+   9. Footer
+   ========================================================= */
+.footer {
+  background: var(--ink);
+  color: #fff;
+  padding: 40px 0 20px 0;
+  margin-top: auto;
+}
+.footer-content {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+.footer-brand .brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.footer-brand span { font-weight: 700; font-size: 20px; letter-spacing: 1.8px; }
+.footer-tagline { color: rgba(255, 255, 255, .6); font-size: 14px; margin-top: 8px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { color: rgba(255, 255, 255, .7); text-decoration: none; font-size: 14px; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-info { text-align: right; }
+.footer-info p { color: rgba(255, 255, 255, .5); font-size: 13px; margin: 4px 0; }
+.footer-disclaimer { font-size: 11px !important; opacity: .6; font-style: italic; }
+
+/* =========================================================
+   10. Responsive breakpoints
+   ========================================================= */
+@media (max-width: 900px) {
+  .topbar nav { display: none; }
+  .menu { display: block; margin-left: auto; }
+  .mobile-nav { display: flex; }
+  .footer-content { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .footer-info { text-align: center; }
+  .footer-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .footer { padding: 30px 0 100px 0; }
+}
+
+@media (max-width: 600px) {
+  .page { padding: 16px 14px 92px; }
+  .topbar { height: 64px; padding: 0 16px; }
+  .brand { font-size: 16px; }
+  .signup-container { padding: 28px 20px; margin: 20px 12px; border-radius: 20px; }
+  .signup-container h1 { font-size: 28px; }
+  .signup-container .input,
+  .signup-container input[type="text"],
+  .signup-container input[type="password"] { height: 44px; font-size: 14px; }
+  .signup-container .btn { min-height: 46px; font-size: 15px; }
+}

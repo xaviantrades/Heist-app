@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Hashein</title>
+
+  <!-- Fonts (replaces the ~280KB of base64 font-face data in the original) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">H</span>
+      <span>HASHEIN</span>
+    </a>
+    <button class="menu" aria-label="Toggle menu">☰</button>
+    <div class="topbar-right">
+      
+      <a class="btn small" href="createaccount.html">Sign up</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="auth-card">
+      <span class="eyebrow">Hashein Account</span>
+      <h1>Welcome back</h1>
+
+      <form id="loginForm" method="post" novalidate>
+        <label for="id_username">Username</label>
+        <input class="input" type="text" id="id_username" name="username" required>
+
+        <label for="id_password">Password</label>
+        <input class="input" type="password" id="id_password" name="password" required>
+
+        <button type="submit" class="btn primary full">Log in</button>
+      </form>
+
+      <p>New to Hashein? <a href="createaccount.html">Create an account</a>.</p>
+    </section>
+  </main>
+
+  <a class="telegram-float" href="#" target="_blank" title="Join our Telegram Channel">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.09-.2-.1-.06-.24-.04-.34-.02-.14.02-2.42 1.54-3.18 2.01-.3.2-.57.3-.82.3-.27 0-.79-.15-1.18-.28-.48-.16-.86-.25-.83-.53.02-.16.24-.32.67-.49 2.62-1.14 4.37-1.89 5.25-2.25 2.5-1.02 3.02-1.2 3.36-1.2.07 0 .19.02.27.09.07.07.09.16.1.24.01.06.01.13-.01.2z"/>
+    </svg>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <span class="brand-mark">H</span>
+          <span>HASHEIN</span>
+        </div>
+        <p class="footer-tagline">Compression Testing &amp; Investment</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://hasheins.com/">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="orders.html">Orders</a>
+        <a href="commissions.html">Commissions</a>
+        <a href="promotions.html">Promotions</a>
+        <a href="team.html">Team</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="#" target="_blank">Telegram</a>
+        <a href="#">Login</a>
+        <a href="createaccount.html">Sign Up</a>
+      </div>
+      <div class="footer-info">
+        <p>© 2026 Hashein. All rights reserved.</p>
+        <p class="footer-disclaimer">Rewards are loyalty/learning points, not cash or investment returns.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="login.js"></script>
+</body>
+</html>
