@@ -98,13 +98,13 @@ async function renderProfile(db) {
   if (document.getElementById("reff")) { document.getElementById("reff").textContent = userData.referralCount; }
     
     
-    if (document.querySelectorAll(".fullNameValue").length) {
+    if (document.querySelectorAll(".fullNameValue")) {
     document.querySelectorAll(".fullNameValue").forEach(element => {
         element.textContent = userData.fullName;
     });
 }
 
-if (document.querySelectorAll(".phoneValue").length) {
+if (document.querySelectorAll(".phoneValue")) {
     document.querySelectorAll(".phoneValue").forEach(element => {
         element.textContent = userData.phoneNumber;
     });
