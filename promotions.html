@@ -235,6 +235,46 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const linkInput = document.querySelector('.referralLinkValue');
+  const codeEl = document.querySelector('.referralCodeValue');
+
+  const copyLinkBtn = document.querySelector('.referral-link-box .btn.primary');
+  const copyCodeBtn = document.querySelector('.referral-code-box .btn.ghost');
+
+  async function copyToClipboard(text, button) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for older browsers / non-HTTPS
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      const original = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => (button.textContent = original), 1500);
+    } catch (err) {
+      console.error('Copy failed:', err);
+    }
+  }
+
+  copyLinkBtn.addEventListener('click', () => {
+    copyToClipboard(linkInput.value, copyLinkBtn); // input uses .value
+  });
+
+  copyCodeBtn.addEventListener('click', () => {
+    copyToClipboard(codeEl.textContent, copyCodeBtn); // strong uses .textContent
+  });
+});
+  </script>
 <script src="logics1.js"></script>
 <script src="logic2.js"></script>
   
