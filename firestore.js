@@ -12,6 +12,7 @@ import {
     updateDoc, 
   where,
     arrayUnion,
+   addDoc,
     getDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
@@ -334,6 +335,10 @@ export async function addToBalance(db, userId, amount) {
 }
 
 
+
+
+
+
 export async function updateProductCredit(db, userId, productId, amount) {
     const productRef = doc(
         db,
@@ -347,3 +352,61 @@ export async function updateProductCredit(db, userId, productId, amount) {
         creditedEarn: amount
     });
 }
+
+
+
+export async function requestWithdrawal(userId, phoneNumber, amount) {
+
+  const Data = {
+    userId: userId,
+    amount: amount,
+    status: "pending",
+    phoneNumber: phoneNumber,
+    createdAt: serverTimestamp(),
+  };
+
+  // ----- 3. Write to Firestore (as subcollection under users) -----
+  try {
+    const withdrawalRef = await addDoc(
+      collection(db, "users", userId, "withdrawals"),
+      Data
+    );
+
+    console.log("withdrawal request successful", withdrawalRef.id);
+
+  } catch (error) {
+    console.error("Withdrawal request failed:", error);
+    throw new Error(`Failed to process withdrawal request: ${error.message}`);
+  }
+}
+
+
+
+export async function getWithdrawals(userId) {
+  try {
+    const withdrawalsRef = collection(db, "users", userId, "withdrawals");
+    const q = query(withdrawalsRef, orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    const withdrawals = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt
+          ? data.createdAt.toDate().toLocaleString()
+          : null,
+      };
+    });
+
+    return withdrawals;
+
+  } catch (error) {
+    console.error("Failed to fetch withdrawals:", error);
+    throw new Error(`Failed to fetch withdrawals: ${error.message}`);
+  }
+}
+
+
+
+
