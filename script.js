@@ -1,19 +1,7 @@
 import { signup, processReferral, db } from "./firestore.js";
 
-document.getElementById("signupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const userName = document.getElementById("id_username").value.trim();
-    const fullName = document.getElementById("id_full_name").value.trim();
-    const phoneNumber = document.getElementById("id_phone").value.trim();
-    const password = document.getElementById("id_password1").value;
-    const referredByCode = document.getElementById("id_referral_code").value;
-
-    const msg = document.getElementById("msg");
-    const btn = document.querySelector(".btn.primary.full");
-
-  
-  window.addEventListener("DOMContentLoaded", () => {
+// Pre-fill referral code from URL on page load
+window.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const referralCode = params.get("ref");
 
@@ -22,17 +10,27 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     }
 });
 
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
+    const userName = document.getElementById("id_username").value.trim();
+    const fullName = document.getElementById("id_full_name").value.trim();
+    const phoneNumber = document.getElementById("id_phone").value.trim();
+    const password = document.getElementById("id_password1").value;
+    const referredByCode = document.getElementById("id_referral_code").value.trim();
 
-  
+    const msg = document.getElementById("msg");
+    const btn = document.querySelector(".btn.primary.full");
 
-  function redirectToLogin() {
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 3000);
-  }
+    function redirectToLogin() {
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 3000);
+    }
 
-    // Basic validation
+    // ...rest of your submit handler unchanged
+
+  // Basic validation
     if (!userName || !fullName || !phoneNumber || !password) {
         msg.textContent = "Please fill in all required fields.";
         return;
@@ -48,30 +46,26 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     btn.style.cursor = "not-allowed";
 
     try {
-        await signup(
-            userName,
-            fullName,
-            phoneNumber,
-            password
-        );
+    const result = await signup(
+        userName,
+        fullName,
+        phoneNumber,
+        password
+    );
 
-        msg.textContent = "signup successful";  
+    msg.textContent = "signup successful";
 
-const newUserId = localStorage.getItem("userId");
-      
-        if (referredByCode) {
-    await processReferral(db, referredByCode, newUserId);
-        }
-      
-        redirectToLogin();
-
-    } catch (error) {
-        msg.textContent = `signup error: ${error.message || error}`;
-
-        // Reset button on failure
-        btn.disabled = false;
-        btn.textContent = originalText;
-        btn.style.opacity = "1";
-        btn.style.cursor = "pointer";
+    if (referredByCode && result?.userId) {
+        await processReferral(db, referredByCode, result.userId);
     }
-});
+
+    redirectToLogin();
+
+} catch (error) {
+    msg.textContent = `signup error: ${error.message || error}`;
+    btn.disabled = false;
+    btn.textContent = originalText;
+    btn.style.opacity = "1";
+    btn.style.cursor = "pointer";
+    }
+  });
