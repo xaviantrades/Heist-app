@@ -329,6 +329,7 @@ function pollPayment(reference) {
           console.log(
             "Product successfully added."
           );
+          window.location.href = "dashboard.html";
 
         } catch (error) {
 
