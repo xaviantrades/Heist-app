@@ -5,6 +5,19 @@ ON THE PLACE BUY SCREEN
 **************************************************/
 const storedProduct = sessionStorage.getItem("selectedProduct");
 
+function removeEmojis(text) {
+  return text
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}\u{1F100}-\u{1F1FF}\u{1F200}-\u{1F2FF}]/gu, "")
+    .replace(/\/day/gi, "")
+    .replace(/ugx/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function formatMoney(amount) {
+  return "UGX " + Number(amount).toLocaleString("en-US");
+}
+
 if (!storedProduct) {
     console.error("No product has been selected.");
 } else {
@@ -14,18 +27,38 @@ if (!storedProduct) {
 
     document.getElementById("name").textContent = product.name;
     document.getElementById("productTag").textContent = product.tag;
-    document.getElementById("productPrice").textContent = product.price;
+
+document.querySelector(".tag").textContent = product.tag;
+    
+   const pricee = formatMoney(removeEmojis(product.price));
+     document.getElementById("productPrice").textContent = pricee;
 
 document.querySelector('.btn.primary.full').textContent = product.price;
 
 document.getElementById("paybtn").textContent = "💳 Pay " + product.price;
 
   document.getElementById("points").textContent = product.points;
+
+
+
+  const cleanText = removeEmojis(product.dailyearn);
+
+  const finalAmount = formatMoney(cleanText);
   
-  document.getElementById("dailyearn").textContent = product.dailyearn;
+  document.getElementById("dailyearn").textContent = finalAmount;
 
-  document.getElementById("returnAmount").textContent = product.returnAmount;
+  document.getElementById("dailyget").textContent = finalAmount;
 
+  
+
+  document.querySelector(".detail-image img").src = product.image;
+  
+  
+const retur = formatMoney(product.returnAmount);
+  document.getElementById("returnAmount").textContent = retur;
+
+document.getElementById("totlr").textContent = retur;
+  
     const detailsContainer = document.getElementById("productDetails");
 
     if (detailsContainer) {
