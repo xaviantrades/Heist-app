@@ -58,7 +58,7 @@
 <a class="back" href="home.html">← Back to catalog</a>
 <section class="detail">
 <div class="detail-image">
-<img alt="Hashein CT-3000" />
+<img alt="" src="" />
 </div>
 <div class="detail-copy">
 <span class="tag"> kN</span>
@@ -71,15 +71,15 @@
 </div>
 <div>
 <small>Price</small>
-<b id="productPrice">UGX </b>
+<b id="productPrice"> </b>
 </div>
 <div>
 <small>Daily Return</small>
-<b>UGX <b id="returnAmount"></b></b>
+<b> <b id="dailyget"></b></b>
 </div>
 <div>
 <small>Total Return</small>
-<b>UGX </b>
+<span><b id="returnAmount"> </b></span>
 </div>
 <div>
 <small>Investment Days</small>
@@ -97,7 +97,7 @@
 </div>
 <div class="summary-item">
 <span>📈 Total earnings after 30 days</span>
-<strong>UGX </strong>
+<strong id="totlr"> </strong>
 </div>
 <div class="summary-item">
 <span>⭐ Loyalty points (unlock after 10 days)</span>
@@ -198,8 +198,16 @@
 </div>
 </div>
 </footer>
+  <script>
+    (function() { const overlay = document.getElementById('overlay'); const closeBtn = document.getElementById('closeBtn'); // Show overlay after 5 seconds 
+  // Close overlay 
+              function closeOverlay() { overlay.classList.remove('show'); overlay.classList.add('hidden'); } // Close using X button 
+              closeBtn.addEventListener('click', closeOverlay); // Close when clicking outside the card
+              overlay.addEventListener('click', function(e) { if (e.target === overlay) { closeOverlay(); } }); // Close using Escape key 
+              document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('show')) { closeOverlay(); } }); })();
+  </script>
 <script type="module" src="payment.js"> </script>
  <script type="module" src="productbuy.js"></script>
   <script src="logics1.js"></script>
-  <script src="pop.js"></script>
+  
  </body></html>
