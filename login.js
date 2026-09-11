@@ -93,7 +93,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         JSON.stringify(result.userData)
       );
 
-      window.location.href = "dashboard.html";
+      window.location.href = "index.html";
 
     } else {
 
