@@ -73,6 +73,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   if (!userName || !password) {
     alert("Please enter your username and password.");
+    loginbtn.textContent = "Log in"
     return;
   }
 
