@@ -118,13 +118,13 @@ if (document.querySelectorAll(".phoneValue")) {
 
 if (document.querySelectorAll(".referralLinkValue").length) {
     document.querySelectorAll(".referralLinkValue").forEach(element => {
-        element.value = `${SITE_URL}/signup?ref=${userData.referralCode}`;
+        element.value = `${SITE_URL}/createaccount?ref=${userData.referralCode}`;
     });
 }
   
   if (document.querySelectorAll(".referralLinValue").length) {
     document.querySelectorAll(".referralLinValue").forEach(element => {
-        element.textContent = `${SITE_URL}/signup?ref=${userData.referralCode}`;
+        element.textContent = `${SITE_URL}/createaccount?ref=${userData.referralCode}`;
     });
   }
 
@@ -132,7 +132,7 @@ if (document.querySelectorAll(".referralLinkValue").length) {
   
   if (document.getElementById("memberSinceValue")) { document.getElementById("memberSinceValue").textContent = formatDate(userData.createdAt); } if (document.getElementById("referredByValue")) { document.getElementById("referredByValue").textContent = userData.referredBy || "Self"; } // Copy code button 
   const copyCodeBtn = document.getElementById("copyCodeBtn"); if (copyCodeBtn) { copyCodeBtn.addEventListener("click", () => { navigator.clipboard.writeText(userData.referralCode); alert("Referral code copied!"); }); } // Copy link button 
-  const copyLinkBtn = document.getElementById("copyLinkBtn"); if (copyLinkBtn) { copyLinkBtn.addEventListener("click", () => { const referralLink = `${SITE_URL}/signup?ref=${userData.referralCode}`; navigator.clipboard.writeText(referralLink); alert("Referral link copied!"); }); }
+  const copyLinkBtn = document.getElementById("copyLinkBtn"); if (copyLinkBtn) { copyLinkBtn.addEventListener("click", () => { const referralLink = `${SITE_URL}/createaccount?ref=${userData.referralCode}`; navigator.clipboard.writeText(referralLink); alert("Referral link copied!"); }); }
     
 
     
