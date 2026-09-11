@@ -102,6 +102,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     } else {
 
       alert(result.message);
+      loginbtn.textContent = "Log in"
 
     }
 
@@ -109,6 +110,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     console.error("Login error:", err);
     alert("Something went wrong. Please try again.");
+    loginbtn.textContent = "Log in"
 
   }
 });
