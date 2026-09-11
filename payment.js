@@ -110,6 +110,8 @@ if (payBtn) {
 
     if (!userId) {
       message("User is not logged in.", "error");
+
+      window.redirect.href="login.html"
       return;
     }
 
