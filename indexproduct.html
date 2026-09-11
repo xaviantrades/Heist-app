@@ -8,6 +8,50 @@
 <link href="#" rel="canonical"/>
 <link rel="stylesheet" href="popsicle.css">
 <link href="stylesproduct.css" rel="stylesheet"/>
+  <style>
+    #status {
+  display: none;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  border: 1px solid transparent;
+}
+
+#status:not(:empty) {
+  display: block;
+}
+
+/* Success — e.g. "Payment successful" */
+#status.success {
+  background-color: #e6f9ed;
+  color: #1e7e34;
+  border-color: #b7e4c7;
+}
+
+/* Error — e.g. "Wrong phone number" */
+#status.error {
+  background-color: #fdecea;
+  color: #c0392b;
+  border-color: #f5b7b1;
+}
+
+/* Warning — e.g. "User not logged in" */
+#status.warning {
+  background-color: #fff8e1;
+  color: #8a6d1a;
+  border-color: #ffe58f;
+}
+
+/* Info — general messages */
+#status.info {
+  background-color: #e8f1fb;
+  color: #1a5490;
+  border-color: #b8d4f0;
+}
+  </style>
 </head>
 <body cz-shortcut-listen="true">
 
