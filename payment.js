@@ -111,7 +111,7 @@ if (payBtn) {
     if (!userId) {
       message("User is not logged in.", "error");
 
-      window.redirect.href="login.html"
+      window.location.href = "login.html";
       return;
     }
 
