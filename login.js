@@ -31,6 +31,7 @@ function initFormValidation() {
 
   form.addEventListener('submit', (e) => {
     const username = document.getElementById('id_username');
+    const username = document.getElementById('loginbtn');
     const password = document.getElementById('id_password');
     let valid = true;
 
