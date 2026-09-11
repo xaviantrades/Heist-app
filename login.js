@@ -69,6 +69,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
   const password = document.getElementById("id_password").value;
 
+  loginbtn.textContent = "Please Wait"
+
   if (!userName || !password) {
     alert("Please enter your username and password.");
     return;
